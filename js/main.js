@@ -70,6 +70,11 @@ function onBtnClick() {
     square.textContent = squareContent;
     square.style.flexBasis = `calc(100% / ${squaresPerRow})`;
 
+    square.addEventListener("click", function(){
+      // il toggle toglie, e se l'elemento non ha alcuna classe lo aggiunge
+      square.classList.toggle("bg-success");
+    })
+
     return square;
     //aggiungo una sezione jsdocs per squarecontent
   }
@@ -126,3 +131,4 @@ function onBtnClick() {
 // così facendo mi carica una griglia sotto l'altra, ora devo settare un reset
 // posso resettare prima dell'append che mi aggiunge i div
 // con un container.innerHTML = ""; (vuoto)
+// aggiungo un event listener per cambiare sfondo al click
