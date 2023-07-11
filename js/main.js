@@ -33,6 +33,10 @@ Le validazioni e i controlli possiamo farli anche in un secondo momento.
 
 const squareGeneratorSelect = document.querySelector("[name='squareGenerator']");
 const btnPlay = document.getElementById("btn-play");
+
+/**
+ * @type {HTMLElement}
+ */
 const gridContainer = document.querySelector(".grid-container");
 
 // Al momento del click (event listener), devo creare la griglia.
@@ -52,15 +56,19 @@ function onBtnClick() {
 
   /**
    * @param {string} squareContent //per il contenuto testuale nel quadrato
+   * @param {number} squareCounts 
    * @returns {HTMLDivElement}
    */
   
-  function singleSquareGenerator(squareContent) {
+  function singleSquareGenerator(squareContent, squareCounts) {
     //Genero un div square e gli aggiungo una classe per modificarlo a piacimento
     const square = document.createElement("div");
 
+    const squaresPerRow = Math.sqrt(squareCounts);
+
     square.classList.add("grid-square");
     square.textContent = squareContent;
+    square.style.flexBasis = `calc(100% / ${squaresPerRow})`;
 
     return square;
     //aggiungo una sezione jsdocs per squarecontent
@@ -69,13 +77,14 @@ function onBtnClick() {
   // Genero la griglia con una funzione
   /**
    * Crea una griglia in base al numero di celle dato
-   * @param {number} squaresNumber //numero di quadrati da creare nella griglia
+   * @param {number} squaresNumber // numero di quadrati da creare nella griglia
+   * @returns {HTMLDivElement[]} // mi ritorna un array di div
    */
   function createGrid(squaresNumber){
     // all'interno di ogni ciclo, creo un singolo quadrato
     const grid = [];
     for (let i = 0; i < squaresNumber; i++) {
-      const newSquare = singleSquareGenerator(i);
+      const newSquare = singleSquareGenerator(i, squaresNumber);
 
     // devo far in modo di inserire questo square nell'array,
     // perchè non me ne faccio nulla di un solo square
@@ -88,6 +97,32 @@ function onBtnClick() {
   const gridList = createGrid(squareGenerator);
   // console log per capire cosa ottengo da gridlist
   console.log(gridList);
+  gridPrint(gridContainer, gridList);
+
+  // creata griglia virtuale, ora però devo passare al DOM
+
+  /**
+   * 
+   * @param {HTMLElement} container // la lista dei quadrati
+   * @param {HTMLDivElement[]} squaresList // array quadrati div
+   */
+  // creo una griglia tramite function
+  function gridPrint(container, squaresList){
+    // reset html
+    container.innerHTML = "";
+  // aggiungo jsdocs per l'elemento container e squareslist
+    // aggiungo un ciclo per manipolare il DOM
+    for (let i = 0; i < squaresList.length; i++) {
+      container.append(squaresList[i]);
+    }
+  }
+  // richiamo la funzione dopo console gridlist
 }
 
-// Assegno ad ogni quadrato un numero progressivo, da 1 a 100.
+// modifico lo style dei quadrati per impostare quanti devono starci per riga
+// square.style.flexBasis = `calc(100% / ${squaresPerRow})`;
+// devo creare squaresPerRow da inserire nel calcolo larghezze
+
+// così facendo mi carica una griglia sotto l'altra, ora devo settare un reset
+// posso resettare prima dell'append che mi aggiunge i div
+// con un container.innerHTML = ""; (vuoto)
