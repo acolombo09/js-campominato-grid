@@ -1,18 +1,26 @@
+header{
+  height: 100px;
+}
+
+main{
+  background-color: #7fffd4;
+}
+
+footer{
+  height: 60px;
+}
+
 .grid-container {
   display: flex;
-  border: 1px solid black;
+  border: 1px solid grey;
   flex-wrap: wrap;
   aspect-ratio: 1/1;
 }
 
 .grid-square {
   display: flex;
-  border: 1px solid green;
+  border: 1px solid black;
   align-items: center;
   justify-content: center;
   aspect-ratio: 1/1;
-}
-
-main{
-  background-color: #7fffd4;
 }
