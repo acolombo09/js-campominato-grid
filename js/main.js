@@ -107,7 +107,6 @@ function onBtnClick() {
   // creata griglia virtuale, ora però devo passare al DOM
 
   /**
-   * 
    * @param {HTMLElement} container // la lista dei quadrati
    * @param {HTMLDivElement[]} squaresList // array quadrati div
    */
@@ -132,3 +131,79 @@ function onBtnClick() {
 // posso resettare prima dell'append che mi aggiunge i div
 // con un container.innerHTML = ""; (vuoto)
 // aggiungo un event listener per cambiare sfondo al click
+
+//------------------------------------------------------------------------------
+// Riscrivo tutto il codice "pulito", senza commenti
+
+// /**
+//  * @type {HTMLSelectElement} //così le select vengono effettivamente riconosciute come select
+//  */
+
+// const squareGeneratorSelect = document.querySelector("[name='squareGenerator']");
+// const btnPlay = document.getElementById("btn-play");
+
+// /**
+//  * @type {HTMLElement}
+//  */
+// const gridContainer = document.querySelector(".grid-container");
+
+// btnPlay.addEventListener("click", onBtnClick);
+
+// function onBtnClick() {
+
+//   const squareGenerator = parseInt(squareGeneratorSelect.value);
+//   console.log("Il valore scelto è", squareGenerator);
+
+//   /**
+//    * @param {string} squareContent //per il contenuto testuale nel quadrato
+//    * @param {number} squareCounts 
+//    * @returns {HTMLDivElement}
+//    */
+
+//   function singleSquareGenerator(squareContent, squareCounts) {
+//     const square = document.createElement("div");
+
+//     const squaresPerRow = Math.sqrt(squareCounts);
+
+//     square.classList.add("grid-square");
+//     square.textContent = squareContent;
+//     square.style.flexBasis = `calc(100% / ${squaresPerRow})`;
+
+//     square.addEventListener("click", function(){
+//       square.classList.toggle("bg-success");
+//     })
+//     return square;
+//   }
+
+//   /**
+//    * Crea una griglia in base al numero di celle dato
+//    * @param {number} squaresNumber // numero di quadrati da creare nella griglia
+//    * @returns {HTMLDivElement[]} // mi ritorna un array di div
+//    */
+//   function createGrid(squaresNumber){
+//     const grid = [];
+//     for (let i = 1; i <= squaresNumber; i++) {
+//       const newSquare = singleSquareGenerator(i, squaresNumber);
+
+//       grid.push(newSquare);
+//     }
+//     return grid;
+//   }
+
+//   const gridList = createGrid(squareGenerator);
+
+//   console.log(gridList);
+//   gridPrint(gridContainer, gridList);
+
+//   /**
+//    * @param {HTMLElement} container // la lista dei quadrati
+//    * @param {HTMLDivElement[]} squaresList // array quadrati div
+//    */
+//   function gridPrint(container, squaresList){
+//     // reset html
+//     container.innerHTML = "";
+//     for (let i = 0; i < squaresList.length; i++) {
+//       container.append(squaresList[i]);
+//     }
+//   }
+// }
