@@ -88,7 +88,7 @@ function onBtnClick() {
   function createGrid(squaresNumber){
     // all'interno di ogni ciclo, creo un singolo quadrato
     const grid = [];
-    for (let i = 0; i < squaresNumber; i++) {
+    for (let i = 1; i <= squaresNumber; i++) {
       const newSquare = singleSquareGenerator(i, squaresNumber);
 
     // devo far in modo di inserire questo square nell'array,
